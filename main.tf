@@ -23,12 +23,12 @@ provider "helm" {
 }
 
 
-provider "aws" {
-  region = var.aws_region
-}
-data "aws_eks_cluster" "msur" {
-  name = var.kubernetes_cluster_id
-}
+# provider "aws" {
+#   region = var.aws_region
+# }
+# data "aws_eks_cluster" "msur" {
+#   name = var.kubernetes_cluster_id
+# }
 
 resource "kubernetes_namespace" "argo-ns" {
   metadata {
