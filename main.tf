@@ -25,9 +25,11 @@ provider "helm" {
 provider "aws" {
   region = var.aws_region
 }
+
 data "aws_eks_cluster" "msur" {
   name = var.kubernetes_cluster_id
 }
+
 provider "kubernetes" {
   load_config_file       = false
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.msur.certificate_authority.0.data)
@@ -38,6 +40,9 @@ provider "kubernetes" {
     args        = ["token", "-i", "${data.aws_eks_cluster.msur.name}"]
   }
 }
+
+
+
 provider "helm" {
   kubernetes {
     load_config_file       = false
